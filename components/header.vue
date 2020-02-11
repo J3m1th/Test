@@ -1,0 +1,261 @@
+<template lang='pug'>
+	header.header
+		.header__logo
+			//- nuxt-link.header__logo-link(to="/" data-aos="test-label-left" data-aos-delay="200" data-aos-duration="2000")
+			nuxt-link.header__logo-link(to="/")
+				| Logo Logo
+		nav.header__nav
+			//-desktop/tablet menu
+			template(v-if="!isMobile")
+				//- menu.menu.header__menu(data-aos="fade-right")
+				menu.menu.header__menu
+					li.menu__item
+						nuxt-link.menu__link(to="'/commercial'") Commercial
+					li.menu__item
+						nuxt-link.menu__link(to="'/editorial'") Editorial
+					li.menu__item
+						nuxt-link.menu__link(to="'/reportage'") Reportage
+					li.menu__item
+						nuxt-link.menu__link(to="'/meet-me'") Meet me
+			//-mobile menu
+			template(v-else)
+				button.nav__btn(@click="toggleMenu" :class="{'animate': isMenuOpened}")
+					span
+				transition(name="dropdown")
+					menu.menu.header__menu.header__menu_mobile(:class="{'active': isMenuOpened}")
+						li.menu__item
+							nuxt-link.menu__link(to="'/commercial'") Commercial
+						li.menu__item
+							nuxt-link.menu__link(to="'/editorial'") Editorial
+						li.menu__item
+							nuxt-link.menu__link(to="'/reportage'") Reportage
+						li.menu__item
+							nuxt-link.menu__link(to="'/meet-me'") Meet me
+					
+</template>
+
+<script>
+
+let wW;
+
+import AOS from 'aos';
+
+export default {
+	data() {
+		return {
+			isDesktop: true,
+			isTablet: false,
+			isMobile: false,
+
+			isMenuOpened: false
+		}
+	},
+
+	mounted() {
+		this.checkAdaptive();
+		window.addEventListener('resize', this.checkAdaptive);
+	},
+
+	updated() {
+		AOS.refreshHard();
+	},
+
+	beforeDestroy() {
+		window.removeEventListener('resize', this.checkAdaptive);
+	},
+
+	methods: {
+		checkAdaptive() {
+			wW = window.innerWidth || document.documentElement.innerWidth;
+
+			if(wW <= 1200) {
+				this.isDesktop = false;
+				this.isTablet = true;
+				this.isMobile = false;
+				if(wW <= 650) {
+					this.isTablet = false;
+					this.isMobile = true;
+				}
+			} else {
+				this.isDesktop = true;
+				this.isTablet = false;
+			}
+
+		},
+
+		toggleMenu() {
+			this.isMenuOpened = !this.isMenuOpened;
+		},
+	}
+}
+</script>
+
+<style lang="scss" scoped>
+	.header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		padding: 42px 48px 42px 48px;
+
+		display: flex;
+		justify-content: space-between;
+
+		min-height: 150px;
+		width: 100%;
+		background: none;
+		z-index: 2;
+
+		transition: transform .5s ease;
+
+		&__logo-link {
+			// font-family: 'GT America', sans-serif;
+			font-family: 'TT Travels', sans-serif;
+			font-style: normal;
+			font-weight: 900;
+			font-size: 16px;
+			line-height: 16px;
+			letter-spacing: -1px;
+			color: #000;
+		}
+
+		&__menu {
+			transition: opacity .5s ease;
+			&_mobile {
+				opacity: 0;
+				pointer-events: none;
+
+				&.active {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	.nav {
+		position: relative;
+		&__btn {
+			position: absolute;
+			top: 40px;
+			right: 40px;
+			width: 20px;
+			height: 9px;
+
+			&::before {
+				content: '';
+				position: absolute;
+				right: 0;
+				bottom: 0;
+
+				width: 20px;
+				height: 1px;
+
+				background-color: rgba(40, 40, 40, 0.57);
+				transition: transform .5s ease;
+			}
+
+			&::after {
+				content: '';
+				position: absolute;
+				right: 0;
+				top: 0;
+
+				width: 20px;
+				height: 1px;
+
+				background-color: rgba(40, 40, 40, 0.57);
+				transition: transform .5s ease;
+			}
+
+			&.animate {
+				&::before {
+					transform: scale(.5);
+					transform-origin: left;
+				}
+
+				&::after {
+					transform: scale(.5);
+					transform-origin: right;
+				}
+				
+			}
+		}
+	}
+
+	.menu {
+		margin: 0;
+    	padding: 0;
+
+		font-family: 'TT Travels', sans-serif;
+		font-style: normal;
+		// font-weight: 300;
+		font-weight: 400;
+		font-size: 11px;
+		line-height: 13px;
+		text-align: right;
+		letter-spacing: 0.02em;
+		text-transform: capitalize;
+		color: #000;
+
+		&__logo {
+			&:hover {
+				// cursor: pointer;
+			}
+		}
+
+		&__item {
+			list-style: none;
+			padding-bottom: 10px;
+		}
+
+		&__link {
+			transition: color .5s ease;
+			&:hover {
+				color: #580300;
+			}
+		}
+	}
+
+// Dropdown Menu Animation
+
+	.dropdown-enter-active,
+	.dropdown-leave-active {
+		transition: all 1s;
+	}
+	.dropdown-enter,
+	.dropdown-leave-to {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+
+
+// media queries
+@media (max-width: 1200px) {
+	.header {
+		padding: 33px 32px 41px 32px;
+	}
+
+	.menu {
+		font-size: 12px;
+		line-height: 14px;
+	}
+}
+
+@media (max-width: 960px) {
+	.header {
+		
+	}
+}
+
+@media (max-width: 650px) {
+	.header {
+	
+	}
+}
+
+@media (max-width: 400px) {
+	.header {
+		
+	}
+}
+</style>
+

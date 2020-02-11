@@ -1,37 +1,34 @@
 <template lang='pug'>
 	header.header
-		.header__logo
-			//- nuxt-link.header__logo-link(to="/" data-aos="test-label-left" data-aos-delay="200" data-aos-duration="2000")
+		.header__logo(data-aos="test-text-down" data-aos-delay="200" data-aos-duration="1400")
 			nuxt-link.header__logo-link(to="/")
 				| Logo Logo
 		nav.header__nav
 			//-desktop/tablet menu
 			template(v-if="!isMobile")
-				//- menu.menu.header__menu(data-aos="fade-right")
 				menu.menu.header__menu
-					li.menu__item
+					li.menu__item(data-aos="test-text-down" data-aos-delay="200" data-aos-duration="350")
 						nuxt-link.menu__link(to="'/commercial'") Commercial
-					li.menu__item
+					li.menu__item(data-aos="test-text-down" data-aos-delay="300" data-aos-duration="350")
 						nuxt-link.menu__link(to="'/editorial'") Editorial
-					li.menu__item
+					li.menu__item(data-aos="test-text-down" data-aos-delay="400" data-aos-duration="350")
 						nuxt-link.menu__link(to="'/reportage'") Reportage
-					li.menu__item
+					li.menu__item(data-aos="test-text-down" data-aos-delay="500" data-aos-duration="350")
 						nuxt-link.menu__link(to="'/meet-me'") Meet me
 			//-mobile menu
 			template(v-else)
-				button.nav__btn(@click="toggleMenu" :class="{'animate': isMenuOpened}")
+				button.nav__btn(@click="toggleMenu" :class="{'animate': isMenuOpened}" )
 					span
 				transition(name="dropdown")
-					menu.menu.header__menu.header__menu_mobile(:class="{'active': isMenuOpened}")
-						li.menu__item
+					menu.menu.header__menu.header__menu_mobile(:class="{'active': isMenuOpened}" data-aos="test-text-down" data-aos-delay="200")
+						li.menu__item(data-aos="test-text-down" data-aos-delay="300")
 							nuxt-link.menu__link(to="'/commercial'") Commercial
-						li.menu__item
+						li.menu__item(data-aos="test-text-down" data-aos-delay="400")
 							nuxt-link.menu__link(to="'/editorial'") Editorial
-						li.menu__item
+						li.menu__item(data-aos="test-text-down" data-aos-delay="500")
 							nuxt-link.menu__link(to="'/reportage'") Reportage
-						li.menu__item
+						li.menu__item(data-aos="test-text-down" data-aos-delay="600")
 							nuxt-link.menu__link(to="'/meet-me'") Meet me
-					
 </template>
 
 <script>

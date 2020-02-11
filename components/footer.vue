@@ -3,10 +3,11 @@
 		.social.footer__social
 			a.social__inst(href="/" target="_blank") Inst
 			a.social__fb(href="/" target="_blank") Fb
-
 </template>
 
 <script>
+
+import AOS from 'aos';
 let wW;
 
 export default {
@@ -23,6 +24,11 @@ export default {
 		window.addEventListener('resize', this.checkAdaptive);
 		
 	},
+
+	updated() {
+		AOS.refreshHard();
+	},
+
 	beforeDestroy() {
 		window.removeEventListener('resize', this.checkAdaptive);
 	},
@@ -36,8 +42,8 @@ export default {
 				this.isTablet = true;
 				this.isMobile = false;
 				if (wW <= 650) {
-				this.isTablet = false;
-				this.isMobile = true;
+					this.isTablet = false;
+					this.isMobile = true;
 				}
 			} else {
 				this.isDesktop = true;
@@ -92,7 +98,6 @@ export default {
 			height: 1px;
 
 			background-color: rgba(#393939, .24);
-
 		}
 	}
 
@@ -106,6 +111,7 @@ export default {
 	}
 }
 
+// media queries
 @media (max-width: 1200px) {
 	.footer {
 		height: 70px;

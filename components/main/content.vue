@@ -1,18 +1,17 @@
 <template lang='pug'>
 	main.block
-		.swiper.block__swiper(v-swiper:mySwiper="options"  @slideChange="itemChange(mySwiper.realIndex)" @mouseover="swiperMouseOver" @mouseleave="swiperMouseLeave")
+		.swiper.block__swiper(v-swiper:mySwiper="options" @slideChange="itemChange(mySwiper.realIndex)" @mouseover="swiperMouseOver" @mouseleave="swiperMouseLeave")
 			.swiper-wrapper
 				.swiper-slide(v-for="(item, index) in 3" :key="index + 1")
 					h1.swiper__text Ink Lingerie
-					
 		.photos.block__photos
-			.photos__item-wrap.photos__item-wrap_left(data-aos="text-up" data-aos-delay="200")
+			.photos__item-wrap.photos__item-wrap_left(v-if="!isMobile")
 				template(v-for="(photo, i) in photos")
 					.photos__item(:style="{backgroundImage: 'url('+ photo.img +')'}" :class="{'fade-in' : (listIndexLeft === i), 'fade-out' : (listIndexLeft !== i)}")
-			.photos__item-wrap.photos__item-wrap_center(data-aos="text-up" data-aos-delay="300")
+			.photos__item-wrap.photos__item-wrap_center
 				template(v-for="(photo, i) in photos")
 					.photos__item(:style="{backgroundImage: 'url('+ photo.img +')'}" :class="{'fade-in' : (listIndexCenter === i), 'fade-out' : (listIndexCenter !== i)}")
-			.photos__item-wrap.photos__item-wrap_right(data-aos="text-up" data-aos-delay="400")
+			.photos__item-wrap.photos__item-wrap_right(v-if="!isMobile")
 				template(v-for="(photo, i) in photos")
 					.photos__item(:style="{backgroundImage: 'url('+ photo.img +')'}" :class="{'fade-in' : (listIndexRight === i), 'fade-out' : (listIndexRight !== i)}")
 			
@@ -283,10 +282,6 @@ export default {
 			font-size: 96px;
 			line-height: 83px;
 		}
-
-		// &-slide {
-		// 	margin-right: 300px !important;
-		// }
 	}
 
 	.photos {
@@ -342,14 +337,55 @@ export default {
 }
 
 @media (max-width: 650px) {
+	.swiper {
+		&__text {
+			font-size: 48px;
+			line-height: 41px;
+		}
+	}
+
 	.photos {
+		width: 300px;
+		height: 450px;
 		
+		&__item-wrap {
+			&_center {
+				top: calc(50% - 13px);
+				width: 273px;
+				height: 403px;
+				.photos__item {
+					width: 273px;
+					height: 403px;
+				}
+				
+			}
+		}
 	}
 }
 
 @media (max-width: 400px) {
+	
+	.swiper {
+		&__text {
+			font-size: 44px;
+			line-height: 38px;
+
+		}
+	}
+
 	.photos {
-		
+		&__item-wrap {
+			&_center {
+				top: calc(50% - 35px);
+				width: 250px;
+				height: 369px;
+				.photos__item {
+					width: 250px;
+					height: 369px;
+				}
+				
+			}
+		}
 	}
 }
 </style>

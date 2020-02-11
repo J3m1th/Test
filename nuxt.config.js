@@ -20,13 +20,16 @@ module.exports = {
 
     // Global CSS 
 
-    css: ['swiper/dist/css/swiper.css'],
+    css: [
+        'swiper/dist/css/swiper.css',
+        'aos/dist/aos.css',
+    ],
     /*
      ** Plugins to load before mounting the App
      */
     plugins: [
         { src: './plugins/vue-awesome-swiper.js', ssr: false },
-        { src: "~/plugins/aos.js", ssr: false }
+        { src: "~/plugins/aos", ssr: false }
     ],
 
     /*
@@ -45,6 +48,7 @@ module.exports = {
                     exclude: /(node_modules)/
                 })
             }
-        }
+        },
+        vendor: ['aos']
     }
 }

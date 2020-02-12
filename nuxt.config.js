@@ -18,6 +18,8 @@ module.exports = {
      */
     loading: { color: '#3B8070' },
 
+    router: { base: '/test/' },
+
     // Global CSS 
 
     css: [

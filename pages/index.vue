@@ -176,12 +176,20 @@ export default {
 
 @media (max-width: 650px) {
 	.block {
-		
+		&__decoration {
+			top: 38px;
+			width: 392px;
+    		height: 493px;
+		}
 	}
 }
 @media (max-width: 400px) {
 	.block {
-		
+		&__decoration {
+			top: 50px;
+			width: 339px;
+    		height: 429px;
+		}
 	}
 }
 

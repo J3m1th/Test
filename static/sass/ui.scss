@@ -5,7 +5,7 @@ $font-dir: "/fonts";
 @include font-face( "TT Travels", "#{$font-dir}/TTTravels-Thin", 300, normal, woff woff2);
 @include font-face( "TT Travels", "#{$font-dir}/TTTravels-Regular", normal, normal, woff woff2);
 @include font-face( "TT Travels", "#{$font-dir}/TTTravels-ExtraBold", 900, normal, woff woff2);
-@include font-face( "Schnyder Cond XL Demi", "#{$font-dir}/SchnyderXCondXLDemi", 800, normal, woff woff2);
+@include font-face( "Schnyder Cond XL Demi", "#{$font-dir}/SchnyderXCondXLDemi", 600, normal, woff woff2);
 html {
     // overflow: scroll;
     overflow-x: hidden;

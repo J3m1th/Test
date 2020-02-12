@@ -17,7 +17,7 @@
 						nuxt-link.menu__link(to="'/meet-me'") Meet me
 			//-mobile menu
 			template(v-else)
-				button.nav__btn(@click="toggleMenu" :class="{'animate': isMenuOpened}" )
+				button.nav__btn(@click="toggleMenu" :class="{'animate': isMenuOpened}" data-aos="test-text-down" data-aos-delay="200" data-aos-duration="1400")
 					span
 				transition(name="dropdown")
 					menu.menu.header__menu.header__menu_mobile(:class="{'active': isMenuOpened}" data-aos="test-text-down" data-aos-delay="200")
@@ -202,6 +202,9 @@ export default {
 		&__item {
 			list-style: none;
 			padding-bottom: 10px;
+			&:last-child {
+				padding-bottom: 0;
+			}
 		}
 
 		&__link {
@@ -245,13 +248,28 @@ export default {
 
 @media (max-width: 650px) {
 	.header {
-	
+		padding: 35px 23px 35px 24px;
+	}
+	.nav {
+		&__btn {
+			right: 25px;
+			top: 38px;
+		}
+	}
+	.menu {
+		margin-top: 25px;
 	}
 }
 
 @media (max-width: 400px) {
 	.header {
-		
+		padding: 18px 20px 18px 20px;
+	}
+	.nav {
+		&__btn {
+			right: 20px;
+    		top: 21px;
+		}
 	}
 }
 </style>

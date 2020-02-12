@@ -49,29 +49,30 @@ export default {
 			options: {
 				slidesPerView: 'auto',
 				centeredSlides: true,
-				spaceBetween: 390,
+				spaceBetween: 280,
 				loop: true,
 
 				// Responsive breakpoints
 				breakpoints: {
 					// when window width is >= 350px
 					400: {
-						// spaceBetween: 20
+						spaceBetween: 20
 					},
 					// when window width is >= 450px
 					450: {
-						// spaceBetween: 30
+						spaceBetween: 30
 					},
 					// when window width is >= 960px
 					960: {
-						// spaceBetween: 40
+						spaceBetween: 80
 					},
 					// when window width is >= 1200px
 					1200: {
-						spaceBetween: 250
+						spaceBetween: 180
 					}
 				}
 			},
+
 		}
 	},
 
@@ -153,6 +154,7 @@ export default {
 
 			mix-blend-mode: darken;
 			user-select: none;
+			letter-spacing: 12px;
 			
 			transition: -webkit-text-fill-color .5s ease, -webkit-text-stroke-width .5s ease, -webkit-text-stroke-color .5s ease;
 			z-index: 2;
@@ -160,7 +162,7 @@ export default {
 
 		&-slide {
 			// width: 610px !important;
-			width: 35% !important;
+			width: 45% !important;
 			transform: rotate(0deg);
 			transition: transform .5s ease;
 
@@ -282,6 +284,10 @@ export default {
 			font-size: 96px;
 			line-height: 83px;
 		}
+
+		&-slide {
+			width: 47% !important;
+		}
 	}
 
 	.photos {
@@ -331,8 +337,23 @@ export default {
 }
 
 @media (max-width: 960px) {
+	.swiper {
+		&-slide {
+			width: 65% !important;
+			justify-content: center;
+		}
+	}
+
 	.photos {
-		
+		width: 715px;
+		&__item-wrap {
+			&_left {
+				left: 2px;
+			}
+			&_center {
+				left: calc(50% - 6px);
+			}
+		}
 	}
 }
 
@@ -341,6 +362,7 @@ export default {
 		&__text {
 			font-size: 48px;
 			line-height: 41px;
+			letter-spacing: 5px;
 		}
 	}
 
@@ -351,6 +373,7 @@ export default {
 		&__item-wrap {
 			&_center {
 				top: calc(50% - 13px);
+				left: 50%;
 				width: 273px;
 				height: 403px;
 				.photos__item {
@@ -364,7 +387,7 @@ export default {
 }
 
 @media (max-width: 400px) {
-	
+
 	.swiper {
 		&__text {
 			font-size: 44px;
@@ -375,8 +398,9 @@ export default {
 
 	.photos {
 		&__item-wrap {
+			height: 369px;
 			&_center {
-				top: calc(50% - 35px);
+				top: 50%;
 				width: 250px;
 				height: 369px;
 				.photos__item {

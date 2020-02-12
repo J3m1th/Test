@@ -29,7 +29,8 @@ module.exports = {
      */
     plugins: [
         { src: './plugins/vue-awesome-swiper.js', ssr: false },
-        { src: "~/plugins/aos", ssr: false }
+        { src: "~/plugins/aos.js", ssr: false },
+        { src: "~/plugins/tilt.js", ssr: false },
     ],
 
     /*

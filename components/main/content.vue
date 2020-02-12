@@ -4,13 +4,16 @@
 			.swiper-wrapper
 				.swiper-slide(v-for="(item, index) in 3" :key="index + 1")
 					h1.swiper__text Ink Lingerie
-		.photos.block__photos
+		.photos.block__photos(v-tilt="{speed: 500, perspective: 1200,  max: 10}")
+			//- .photos__inner(v-tilt="{speed: 100, perspective: 1000,  max: 15, scale: 1 }")
 			.photos__item-wrap.photos__item-wrap_left(v-if="!isMobile")
 				template(v-for="(photo, i) in photos")
 					.photos__item(:style="{backgroundImage: 'url('+ photo.img +')'}" :class="{'fade-in' : (listIndexLeft === i), 'fade-out' : (listIndexLeft !== i)}")
+			
 			.photos__item-wrap.photos__item-wrap_center
 				template(v-for="(photo, i) in photos")
 					.photos__item(:style="{backgroundImage: 'url('+ photo.img +')'}" :class="{'fade-in' : (listIndexCenter === i), 'fade-out' : (listIndexCenter !== i)}")
+
 			.photos__item-wrap.photos__item-wrap_right(v-if="!isMobile")
 				template(v-for="(photo, i) in photos")
 					.photos__item(:style="{backgroundImage: 'url('+ photo.img +')'}" :class="{'fade-in' : (listIndexRight === i), 'fade-out' : (listIndexRight !== i)}")
@@ -186,12 +189,17 @@ export default {
 	// photos
 	.photos {
 		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
+		// top: 50%;
+		// left: 50%;
+		// transform: translate(-50%, -50%);
+		top: calc(50% - (717px / 2));
+		left: calc(50% - (1024px / 2));
 
 		width: 1024px;
-   		height: 717px;
+		height: 717px;
+		   
+		transform-style: preserve-3d;
+		transform: perspective(1200px);
 
 		&__item {
 			position: absolute;
@@ -222,6 +230,8 @@ export default {
 		&__item-wrap {
 			position: absolute;
 
+			perspective: 40px;
+
 			// background-position: center center;
 			// background-repeat: no-repeat;
 			// background-size: cover;
@@ -235,8 +245,8 @@ export default {
 				// width: 238px;
 				// height: 331px;
 
-				transform: rotate(1.1deg);
-
+				transform: rotate(1.1deg) translateZ(10px);
+				 
 				.photos__item {
 					width: 238px;
 					height: 331px;
@@ -250,7 +260,7 @@ export default {
 				width: 345px;
 				height: 238px;
 
-				transform: rotate(2.03deg);
+				transform: rotate(2.03deg) translateZ(100px);
 
 				.photos__item {
 					width: 345px;
@@ -262,7 +272,7 @@ export default {
 			&_center {
 				top: 50%;
 				left: 50%;
-				transform: translate(-50%, -50%) rotate(1.5deg);
+				transform: translate3d(-50%, -50%, 50px) rotate(1.5deg);
 
 				width: 476px;
 				height: 702px;

@@ -303,6 +303,9 @@ export default {
 	.photos {
 		width: 727px;
 		height: 542px;
+
+		top: calc(50% - (542px / 2));
+		left: calc(50% - (727px / 2));
 		
 		&__item-wrap {
 			&_left {
@@ -356,6 +359,7 @@ export default {
 
 	.photos {
 		width: 715px;
+		left: calc(50% - (715px / 2));
 		&__item-wrap {
 			&_left {
 				left: 2px;
@@ -379,6 +383,9 @@ export default {
 	.photos {
 		width: 300px;
 		height: 450px;
+
+		top: calc(50% - (450px / 2));
+		left: calc(50% - (300px / 2));
 		
 		&__item-wrap {
 			&_center {

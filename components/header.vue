@@ -3,32 +3,17 @@
 		.header__logo(data-aos="test-text-down" data-aos-delay="200" data-aos-duration="1400")
 			nuxt-link.header__logo-link(to="/")
 				| Logo Logo
-		nav.header__nav
-			//-desktop/tablet menu
-			template(v-if="!isMobile")
-				menu.menu.header__menu
-					li.menu__item(data-aos="test-text-down" data-aos-delay="200" data-aos-duration="350")
-						nuxt-link.menu__link(to="'/commercial'") Commercial
-					li.menu__item(data-aos="test-text-down" data-aos-delay="300" data-aos-duration="350")
-						nuxt-link.menu__link(to="'/editorial'") Editorial
-					li.menu__item(data-aos="test-text-down" data-aos-delay="400" data-aos-duration="350")
-						nuxt-link.menu__link(to="'/reportage'") Reportage
-					li.menu__item(data-aos="test-text-down" data-aos-delay="500" data-aos-duration="350")
-						nuxt-link.menu__link(to="'/meet-me'") Meet me
-			//-mobile menu
-			template(v-else)
-				button.nav__btn(@click="toggleMenu" :class="{'animate': isMenuOpened}" data-aos="test-text-down" data-aos-delay="200" data-aos-duration="1400")
-					span
-				transition(name="dropdown")
-					menu.menu.header__menu.header__menu_mobile(:class="{'active': isMenuOpened}" data-aos="test-text-down" data-aos-delay="200")
-						li.menu__item(data-aos="test-text-down" data-aos-delay="300")
-							nuxt-link.menu__link(to="'/commercial'") Commercial
-						li.menu__item(data-aos="test-text-down" data-aos-delay="400")
-							nuxt-link.menu__link(to="'/editorial'") Editorial
-						li.menu__item(data-aos="test-text-down" data-aos-delay="500")
-							nuxt-link.menu__link(to="'/reportage'") Reportage
-						li.menu__item(data-aos="test-text-down" data-aos-delay="600")
-							nuxt-link.menu__link(to="'/meet-me'") Meet me
+		nav.nav.header__nav
+			button.nav__btn(type="button" v-if="isMobile" @click="toggleMenu" :class="{'animate': isMenuOpened}" data-aos="test-text-down" data-aos-delay="200" data-aos-duration="1400")
+			menu.menu.nav__menu(:class="[{'active': isMenuOpened}, {'menu_mobile' : isMobile}]" )
+				li.menu__item(data-aos="test-text-down" data-aos-delay="200" data-aos-duration="350")
+					nuxt-link.menu__link(to="'/commercial'") Commercial
+				li.menu__item(data-aos="test-text-down" data-aos-delay="300" data-aos-duration="350")
+					nuxt-link.menu__link(to="'/editorial'") Editorial
+				li.menu__item(data-aos="test-text-down" data-aos-delay="400" data-aos-duration="350")
+					nuxt-link.menu__link(to="'/reportage'") Reportage
+				li.menu__item(data-aos="test-text-down" data-aos-delay="500" data-aos-duration="350")
+					nuxt-link.menu__link(to="'/meet-me'") Meet me
 </template>
 
 <script>
@@ -114,22 +99,11 @@ export default {
 			letter-spacing: -1px;
 			color: #000;
 		}
-
-		&__menu {
-			transition: opacity .5s ease;
-			&_mobile {
-				opacity: 0;
-				pointer-events: none;
-
-				&.active {
-					opacity: 1;
-				}
-			}
-		}
 	}
 
 	.nav {
 		position: relative;
+
 		&__btn {
 			position: absolute;
 			top: 40px;
@@ -193,6 +167,8 @@ export default {
 		text-transform: capitalize;
 		color: #000;
 
+		transition: opacity .5s ease;
+		
 		&__logo {
 			&:hover {
 				// cursor: pointer;
@@ -213,20 +189,16 @@ export default {
 				color: #580300;
 			}
 		}
-	}
 
-// Dropdown Menu Animation
+		&_mobile {
+			opacity: 0;
+			pointer-events: none;
 
-	.dropdown-enter-active,
-	.dropdown-leave-active {
-		transition: all 1s;
+			&.active {
+				opacity: 1;
+			}
+		}
 	}
-	.dropdown-enter,
-	.dropdown-leave-to {
-		opacity: 0;
-		transform: translateY(30px);
-	}
-
 
 // media queries
 @media (max-width: 1200px) {
@@ -240,20 +212,14 @@ export default {
 	}
 }
 
-@media (max-width: 960px) {
-	.header {
-		
-	}
-}
-
 @media (max-width: 650px) {
 	.header {
 		padding: 35px 23px 35px 24px;
 	}
 	.nav {
 		&__btn {
-			right: 25px;
-			top: 38px;
+			right: 1px;
+    		top: 3px;
 		}
 	}
 	.menu {
@@ -264,12 +230,6 @@ export default {
 @media (max-width: 400px) {
 	.header {
 		padding: 18px 20px 18px 20px;
-	}
-	.nav {
-		&__btn {
-			right: 20px;
-    		top: 21px;
-		}
 	}
 }
 </style>

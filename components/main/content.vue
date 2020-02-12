@@ -1,23 +1,21 @@
 <template lang='pug'>
 	main.block
+		//- swiper
 		.swiper.block__swiper(v-swiper:mySwiper="options" @slideChange="itemChange(mySwiper.realIndex)" @mouseover="swiperMouseOver" @mouseleave="swiperMouseLeave")
 			.swiper-wrapper
 				.swiper-slide(v-for="(item, index) in 3" :key="index + 1")
 					h1.swiper__text Ink Lingerie
-		.photos.block__photos(v-tilt="{speed: 500, perspective: 1200,  max: 10}")
-			//- .photos__inner(v-tilt="{speed: 100, perspective: 1000,  max: 15, scale: 1 }")
+		//- photos block (aos-fade-in)
+		.photos.block__photos(v-tilt="{speed: 500, perspective: 1200,  max: 10}" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="1400")
 			.photos__item-wrap.photos__item-wrap_left(v-if="!isMobile")
 				template(v-for="(photo, i) in photos")
 					.photos__item(:style="{backgroundImage: 'url('+ photo.img +')'}" :class="{'fade-in' : (listIndexLeft === i), 'fade-out' : (listIndexLeft !== i)}")
-			
 			.photos__item-wrap.photos__item-wrap_center
 				template(v-for="(photo, i) in photos")
 					.photos__item(:style="{backgroundImage: 'url('+ photo.img +')'}" :class="{'fade-in' : (listIndexCenter === i), 'fade-out' : (listIndexCenter !== i)}")
-
 			.photos__item-wrap.photos__item-wrap_right(v-if="!isMobile")
 				template(v-for="(photo, i) in photos")
 					.photos__item(:style="{backgroundImage: 'url('+ photo.img +')'}" :class="{'fade-in' : (listIndexRight === i), 'fade-out' : (listIndexRight !== i)}")
-			
 </template>
 
 <script>
@@ -82,6 +80,8 @@ export default {
 	mounted() {
 		this.checkAdaptive();
 		window.addEventListener('resize', this.checkAdaptive);
+
+		AOS.init();
 	},
 
 	updated() {
@@ -164,7 +164,6 @@ export default {
 		}
 
 		&-slide {
-			// width: 610px !important;
 			width: 45% !important;
 			transform: rotate(0deg);
 			transition: transform .5s ease;
@@ -204,6 +203,9 @@ export default {
 		&__item {
 			position: absolute;
 
+			width: 100%;
+			height: 100%;
+
 			background-position: center center;
 			background-repeat: no-repeat;
 			background-size: cover;
@@ -224,7 +226,6 @@ export default {
 					pointer-events: none;
 				}
 			}
-
 		}
 
 		&__item-wrap {
@@ -232,56 +233,31 @@ export default {
 
 			perspective: 40px;
 
-			// background-position: center center;
-			// background-repeat: no-repeat;
-			// background-size: cover;
-
-			// transition: opacity .5s ease;
-
 			&_left {
-		 		left: 21px;
-    			top: 129px;
-
-				// width: 238px;
-				// height: 331px;
+		 		left: 20px;
+    			top: 133px;
+				width: 238px;
+				height: 331px;
 
 				transform: rotate(1.1deg) translateZ(10px);
-				 
-				.photos__item {
-					width: 238px;
-					height: 331px;
-				}
-				
-			}
-			&_right {
-				right: 0;
-				bottom: 50px;
-
-				width: 345px;
-				height: 238px;
-
-				transform: rotate(2.03deg) translateZ(100px);
-
-				.photos__item {
-					width: 345px;
-					height: 238px;
-				}
-
 			}
 
 			&_center {
 				top: 50%;
 				left: 50%;
-				transform: translate3d(-50%, -50%, 50px) rotate(1.5deg);
-
-				width: 476px;
-				height: 702px;
-
-				.photos__item {
-					width: 476px;
-					height: 702px;
-				}
+				width: 456px;
+				height: 672px;
 				
+				transform: translate3d(-50%, -50%, 50px) rotate(1.5deg);
+			}
+
+			&_right {
+				right: 44px;
+				bottom: 76px;
+				width: 316px;
+				height: 219px;
+
+				transform: rotate(2.03deg) translateZ(100px);
 			}
 		}
 	}
@@ -290,13 +266,24 @@ export default {
 // media queries
 @media (max-width: 1200px) {
 	.swiper {
+		position: relative;
+   		top: -5px;
 		&__text {
 			font-size: 96px;
 			line-height: 83px;
+			letter-spacing: 10px;
 		}
 
 		&-slide {
 			width: 47% !important;
+			&-prev {
+				position: relative;
+   				top: 5px;
+			}
+			&-next {
+				position: relative;
+   				top: 5px;
+			}
 		}
 	}
 
@@ -309,17 +296,11 @@ export default {
 		
 		&__item-wrap {
 			&_left {
-		 		left: 14px;
-    			top: 109px;
+		 		left: 11px;
+   				top: 111px;
 
-				// width: 163px;
-				// height: 226px;
-
-				.photos__item {
-					width: 163px;
-					height: 226px;
-				}
-				
+				width: 163px;
+				height: 226px;
 			}
 			&_right {
 				right: 0;
@@ -327,23 +308,11 @@ export default {
 
 				width: 234px;
 				height: 162px;
-
-				.photos__item {
-					width: 234px;
-					height: 162px;
-				}
-
 			}
 
 			&_center {
 				width: 359px;
 				height: 530px;
-
-				.photos__item {
-					width: 359px;
-					height: 530px;
-				}
-				
 			}
 		}
 	}
@@ -351,6 +320,7 @@ export default {
 
 @media (max-width: 960px) {
 	.swiper {
+		top: 0;
 		&-slide {
 			width: 65% !important;
 			justify-content: center;
@@ -362,7 +332,7 @@ export default {
 		left: calc(50% - (715px / 2));
 		&__item-wrap {
 			&_left {
-				left: 2px;
+				left: 0;
 			}
 			&_center {
 				left: calc(50% - 6px);
@@ -373,6 +343,7 @@ export default {
 
 @media (max-width: 650px) {
 	.swiper {
+		top: -14px;
 		&__text {
 			font-size: 48px;
 			line-height: 41px;
@@ -391,21 +362,17 @@ export default {
 			&_center {
 				top: calc(50% - 13px);
 				left: 50%;
+
 				width: 273px;
 				height: 403px;
-				.photos__item {
-					width: 273px;
-					height: 403px;
-				}
-				
 			}
 		}
 	}
 }
 
 @media (max-width: 400px) {
-
 	.swiper {
+		top: 2px;
 		&__text {
 			font-size: 44px;
 			line-height: 38px;
@@ -414,17 +381,27 @@ export default {
 	}
 
 	.photos {
+		height: 369px;
 		&__item-wrap {
-			height: 369px;
 			&_center {
-				top: 50%;
+				top: calc(50% + 40px);
 				width: 250px;
 				height: 369px;
-				.photos__item {
-					width: 250px;
-					height: 369px;
-				}
-				
+			}
+		}
+	}
+}
+
+// height
+@media (max-height: 750px) {
+	.photos {
+		height: 80vh;
+		top: calc(50% - (80vh / 2));
+		&__item-wrap {
+			&_center {
+				top: calc(50%);
+				width: 30vw;
+				height: 80vh;
 			}
 		}
 	}

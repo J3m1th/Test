@@ -1,6 +1,6 @@
 <template lang="pug">
 	footer.footer
-		.social.footer__social
+		.social.footer__social(data-aos="test-text-up" data-aos-delay="200" data-aos-duration="1400" data-aos-offset="-10")
 			a.social__inst(href="/" target="_blank") Inst
 			a.social__fb(href="/" target="_blank") Fb
 </template>
@@ -22,7 +22,6 @@ export default {
 	mounted() {
 		this.checkAdaptive();
 		window.addEventListener('resize', this.checkAdaptive);
-		
 	},
 
 	updated() {
@@ -114,29 +113,25 @@ export default {
 // media queries
 @media (max-width: 1200px) {
 	.footer {
-		height: 70px;
-		min-height: 70px;
+		height: 74px;
+		min-height: 74px;
 		padding: 15px 33px 15px 33px;
-	}
-}
-
-@media (max-width: 960px) {
-	.footer {
-		
 	}
 }
 
 @media (max-width: 650px) {
 	.footer {
-		height: 50px;
-		min-height: 50px;
+		height: 58px;
+   		min-height: 58px;
 		padding: 10px 24px 10px 24px;
 	}
 }
 
 @media (max-width: 400px) {
 	.footer {
-		
+		height: 51px;
+		min-height: 51px;
+		padding: 10px 21px 10px 21px;
 	}
 }
 

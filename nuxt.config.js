@@ -28,9 +28,9 @@ module.exports = {
      ** Plugins to load before mounting the App
      */
     plugins: [
-        { src: './plugins/vue-awesome-swiper.js', ssr: false },
-        { src: "~/plugins/aos.js", ssr: false },
-        { src: "~/plugins/tilt.js", ssr: false },
+        { src: './plugins/vue-awesome-swiper.js', mode: 'client' },
+        { src: "~/plugins/aos.js", mode: 'client' },
+        { src: "~/plugins/tilt.js", mode: 'client' },
     ],
 
     /*

@@ -1,4 +1,5 @@
 module.exports = {
+    mode: 'universal',
     /*
      ** Headers of the page
      */
@@ -17,8 +18,6 @@ module.exports = {
      ** Customize the progress bar color
      */
     loading: { color: '#3B8070' },
-
-    router: { base: '/test/' },
 
     // Global CSS 
 
